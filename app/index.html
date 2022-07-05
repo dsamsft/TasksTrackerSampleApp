@@ -8,7 +8,7 @@
     <h2>Demo by David Sanchez</h2>
     <div  id="taskData">Loading content from the Tasks API...</div >
     <script>
-        fetch('https://taskstrackersampleapp.azurewebsites.net/api/tasks/list')
+        fetch('api/tasks/list')
         .then(function (response) {
             return response.json();
         })
