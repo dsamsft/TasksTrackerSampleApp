@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tasks Tracker Sample App</title>
+</head>
+<body>
+    <h1>Tasks Tracker Sample App</h1>
+    <h2>Demo by David Sanchez</h2>
+    <div  id="taskData">Loading content from the Tasks API...</div >
+    <script>
+        fetch('api/tasks/list')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            appendData(data);
+        })
+        .catch(function (err) {
+            console.log('error: ' + err);
+            document.getElementById("taskData").textContent = "Error loading data from API."
+        });          
+    function appendData(data) {
+        var mainContainer = document.getElementById("taskData");
+        mainContainer.textContent = ""
+        for (var i = 0; i < data.length; i++) {
+            var div = document.createElement("div");
+            div.innerHTML = '<b>Name:</b> ' + data[i].name + ' ' + ' <b>Description:</b>: ' + data[i].description + ' ' + ' <b>Deadline:</b>: ' + data[i].deadline + ' ' + ' <b>Completed:</b> ' + data[i].isCompleted;
+            mainContainer.appendChild(div);
+    }}
+    </script>
+</body>
+</html>
